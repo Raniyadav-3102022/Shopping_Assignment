@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.checkbox-container {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.checkbox-container input[type="checkbox"] {
+    display: none;
+    /* Hide the actual checkbox */
+}
+
+.checkbox-custom {
+    width: 20px;
+    /* Adjust as needed */
+    height: 20px;
+    /* Adjust as needed */
+    background-color: #007bff;
+    /* Change color as needed */
+    border-radius: 3px;
+    /* Adjust as needed */
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Style for the checkbox when checked */
+.checkbox-custom:checked {
+    background-color: #28a745;
+    /* Change color as needed */
+}
+
+/* Style for the checkmark */
+.checkmark {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    /* background: url('checkmark.png') center/contain no-repeat;  */
+    display: none;
+}
+
+.checkbox-custom:checked+.checkmark {
+    display: block;
+}
