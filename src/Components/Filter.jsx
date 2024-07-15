@@ -25,9 +25,9 @@ const items = [
         type: 'divider',
     },
     getItem('color', 'sub2', <AppstoreOutlined />, [
-        getItem('white', '4'),
-        getItem('red', '5'),
-        getItem('black', '6'),
+        getItem('White', '4'),
+        getItem('Pink', '5'),
+        getItem('Grey', '6'),
     ]),
     {
         type: 'divider',
