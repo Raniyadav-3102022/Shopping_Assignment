@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import data from '../Data/Productsdata';
+import productData from '../Data/Productsdata';
 import { Button, Card } from 'antd';
 import { Pagination } from 'antd';
 import {
@@ -14,26 +14,26 @@ function Products({ filter, searchdata }) {
   const [currentPage, setCurrentPage] = useState(1);
   console.log(filter, "filter")
   const itemsPerPage = 4;
-  var data2 = data.Products;
+  var data2 = productData.Products;
   const navigate = useNavigate();
   if (filter || searchdata) {
-    data2 = data.Products?.filter(
-      item => item.title === filter ||
-        item?.categoery === filter ||
-        (item?.Color && item?.Color.includes(filter)) ||
-        (item?.color && item?.color.includes(filter)) ||
-        (item?.title && item?.title.startsWith(searchdata && searchdata?.charAt(0).toUpperCase() + searchdata?.substr(1).toLowerCase())) ||
-        (item?.Color)?.includes(searchdata) === true ||
-        (item?.color)?.includes(searchdata) === true ||
-        (item?.price <= Number(filter))
+    data2 = productData.Products?.filter(
+      item => item.p_Title === filter ||
+        item?.p_Categoery === filter ||
+        item?.p_Categoery === searchdata ||
+        (item?.p_Color.includes(filter)) ||
+        (item?.p_Title.startsWith(searchdata?.charAt(0).toUpperCase() + searchdata?.substr(1).toLowerCase())) ||
+        (item?.p_Title)?.includes(searchdata?.toLowerCase() || searchdata?.toUpperCase()) === true ||
+        (item?.p_Color)?.includes(searchdata?.toLowerCase() || searchdata?.toUpperCase()) === true ||
+        (item?.p_Price <= Number(filter))
     );
   }
 
   useEffect(() => {
   }, [])
-  const sendproductdetails = (data) => {
+  const sendproductdetails = (productData) => {
 
-    navigate(`/ProductDetails/${data.id}`);
+    navigate(`/ProductDetails/${productData.p_Id}`);
   }
 
   const currentPageData = data2.slice(
@@ -47,18 +47,18 @@ function Products({ filter, searchdata }) {
   return (
     <>
       <div class="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4">
-        {currentPageData.map((e) => {
+        {currentPageData?.map((e) => {
           return <Card
             hoverable
-            cover={<img alt="example" onClick={() => sendproductdetails(e)} className='w-56 h-56 relative' src={e.src} />}
+            cover={<img alt="example" onClick={() => sendproductdetails(e)} className='w-56 h-56 relative' src={e?.srcOne} />}
           >
-            <Meta className='absolute top-48 w-auto left-0 p-2 bg-white' title={e?.title} />
+            <Meta className='absolute top-48 w-auto left-0 p-2 bg-white' title={e?.p_Title} />
             <div className="flex justify-between mt-3">
-              <div><p>{e?.categoery}</p></div>
-              <div><p>${e?.price}</p></div>
+              <div><p>{e?.p_Categoery}</p></div>
+              <div><p>${e?.p_Price}</p></div>
             </div>
             <div className="flex justify-between mt-3">
-              <div><Rate allowHalf defaultValue={e?.rating} /></div>
+              <div><Rate allowHalf defaultValue={e?.p_Rating} /></div>
               <Button className='border-none'><ShoppingCartOutlined /></Button>
             </div>
           </Card>

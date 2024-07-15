@@ -3,7 +3,7 @@ import { Button, Drawer } from 'antd';
 
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
-import { Col, InputNumber, Row, Slider, Space } from 'antd';
+import { Slider } from 'antd';
 
 function getItem(label, key, icon, children, type, color) {
     return {
@@ -15,17 +15,16 @@ function getItem(label, key, icon, children, type, color) {
         color
     };
 }
-
 const items = [
     getItem('Collection', 'sub1', <MailOutlined />, [
         getItem('Bed Room', '1'),
-        getItem('Hall', '2'),
-        getItem('Wash Room', '3'),
+        getItem('Garden', '2'),
+        getItem('Hall', '3'),
     ]),
     {
         type: 'divider',
     },
-    getItem('Color', 'sub2', <AppstoreOutlined />, [
+    getItem('color', 'sub2', <AppstoreOutlined />, [
         getItem('white', '4'),
         getItem('red', '5'),
         getItem('black', '6'),
@@ -36,7 +35,6 @@ const items = [
     getItem('Categoery', 'sub3', <SettingOutlined />, [
         getItem('Home', '7'),
         getItem('Garden', '8'),
-        getItem('Interior', '9'),
     ]), {
         type: 'divider',
     },
