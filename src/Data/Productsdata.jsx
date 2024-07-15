@@ -134,7 +134,7 @@
         "srcThree": "https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "p_Title":"Hall",
         "p_Categoery":"Home",
-        "p_Color":["yellow"],
+        "p_Color":["Yellow"],
         "p_Description":"If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough, the next .",
         "p_Price":500,
         "p_Rating":1,

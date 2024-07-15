@@ -28,13 +28,14 @@ const items = [
         getItem('White', '4'),
         getItem('Pink', '5'),
         getItem('Grey', '6'),
+        getItem('Yellow', '7'),
     ]),
     {
         type: 'divider',
     },
     getItem('Categoery', 'sub3', <SettingOutlined />, [
-        getItem('Home', '7'),
-        getItem('Garden', '8'),
+        getItem('Home', '8'),
+        getItem('Garden', '9'),
     ]), {
         type: 'divider',
     },
