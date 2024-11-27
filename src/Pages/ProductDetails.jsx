@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import productData from '../Data/Productsdata';
-import { Card } from 'antd';
+import { Card, Space, Carousel } from 'antd';
 import cart from '../assets/Icone/cart-shopping-solid.svg'
 import { useParams } from "react-router-dom";
-import { Space } from 'antd';
-import { Carousel } from 'antd';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,8 +11,8 @@ function ProductDetails() {
 
     const param = useParams()
     console.log(param, "param")
-    const onChange = (currentSlide) => {
-        console.log(productData?.Products[Number(param.id)]?.srcOne);
+    const onChange = () => {
+        console.log(product.srcOne);
     };
     const [checkedColors, setCheckedColors] = useState([]);
 
@@ -28,6 +26,10 @@ function ProductDetails() {
             setCheckedColors([...checkedColors, color]);
         }
     };
+
+    const productId = Number(param.id);
+    const product = productData?.Products[productId];
+
     return (
         <div className='p-5'>
             <div class="grid lg:grid-cols-2 mt-20">
@@ -37,34 +39,26 @@ function ProductDetails() {
                         className='w-96 border-none '
                     >
                         <Carousel afterChange={onChange} autoplay="true">
-                            <div>
-                                <img alt="example" className='relative' src={productData?.Products[Number(param.id)]?.srcOne} />
-                            </div>
-                            <div>
-                                <img alt="example" className='relative' src={productData?.Products[Number(param.id)]?.srcTwo} />
-                            </div>
-                            <div>
-                                <img alt="example" className='relative' src={productData?.Products[Number(param.id)]?.srcThree} />
-                            </div>
-                            <div>
-                                <img alt="example" className='relative' src={productData?.Products[Number(param.id)]?.srcOne} />
+                            <div className="carousel">
+                                {Object.values(product.productImg).map((imgSrc, index) => (
+                                    <img key={index} alt={`Product Image ${index}`} className='relative' src={imgSrc} />
+                                ))}
                             </div>
                         </Carousel>
                     </Card>
                 </div>
                 <div>
-                    <p className='mt-2 text-gray-500 font-bold'>{productData?.Products[Number(param.id)]?.p_Categoery}</p>
-                    <h2 className='font-bold text-3xl'>{productData?.Products[Number(param?.id)]?.p_Title}</h2>
+                    <p className='mt-2 text-gray-500 font-bold'>{product.productCategoery}</p>
+                    <h2 className='font-bold text-3xl'>{product.productTitle}</h2>
 
-                    <p className='text-gray-500  text-justify mt-5 w-96'>{productData?.Products[Number(param.id)]?.p_Description}</p>
+                    <p className='text-gray-500  text-justify mt-5 w-96'>{product.productDescription}</p>
                     <p className='mt-5 font-bold'>Color</p>
                     <Space direction="horizontal">
-                        {productData?.Products[Number(param.id)]?.p_Color.map((c, index) => (
+                        {product.productColor.map((c, index) => (
 
                             <div style={{ backgroundColor: c }} key={index} className={`flex items-center  w-8 rounded-full p-0.5 border-2 border-gray-200 `}>
                                 <input
                                     key={index}
-                                    // id={index}
                                     type="checkbox"
                                     className="relative appearance-none w-24 m-0 h-6 border border-none rounded-md checked:bg-none checked:border-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-opacity-75"
 
@@ -84,7 +78,7 @@ function ProductDetails() {
                     </Space>
                     <p className='mt-2 text-gray-500 font-bold'>Price Per Unit</p>
                     <div className="grid lg:grid-cols-3 ">
-                        <h3 className='text-4xl ms-0 p-0 font-bold mt-6'>${productData?.Products[Number(param.id)].p_Price}</h3>
+                        <h3 className='text-4xl ms-0 p-0 font-bold mt-6'>${product.productPrice}</h3>
                         <div className="mt-5 justify-center">
                             <button className=' bg-gray-900 text-white font-bold p-3 w-36'>Buy now</button>
                         </div>

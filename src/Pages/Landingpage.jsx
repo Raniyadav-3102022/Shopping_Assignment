@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import Filter from '../Components/Filter'
-import Products from './Products'
+import Products from '../Components/Products'
 
 function Landingpage({searchdata}) {
     const [selectedFilter, setSelectedFilter] = useState(null);
-
     const handleFilterChange = (filter) => {
         setSelectedFilter(filter);
         console.log("filter",filter)
@@ -20,7 +19,6 @@ function Landingpage({searchdata}) {
                     <Products filter={selectedFilter} searchdata={searchdata}/>
                 </div>
             </div>
-
         </div>
     )
 }

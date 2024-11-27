@@ -27,7 +27,6 @@ const Login = () => (
                 >
                     <p className='text-start font-bold mb-1'>UserName</p>
                     <Form.Item
-                        // label="Username"
                         name="Username"
                         rules={[
                             {
@@ -40,7 +39,6 @@ const Login = () => (
                     </Form.Item>
                     <p className='text-start font-bold mb-1'>Password</p>
                     <Form.Item
-                        // label="Password"
                         name="Password"
                         rules={[
                             {
