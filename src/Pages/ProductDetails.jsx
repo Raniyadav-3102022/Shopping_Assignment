@@ -39,11 +39,11 @@ function ProductDetails() {
                         className='w-96 border-none '
                     >
                         <Carousel afterChange={onChange} autoplay="true">
-                            <div className="carousel">
-                                {Object.values(product.productImg).map((imgSrc, index) => (
+                            {Object.values(product.productImg).map((imgSrc, index) => (
+                                <div className="carousel">
                                     <img key={index} alt={`Product Image ${index}`} className='relative' src={imgSrc} />
-                                ))}
-                            </div>
+                                </div>
+                            ))}
                         </Carousel>
                     </Card>
                 </div>
