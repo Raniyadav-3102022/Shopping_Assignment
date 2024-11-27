@@ -50,7 +50,7 @@ function Products({ filter, searchdata }) {
           return <Card
             key={e.productId}
             hoverable
-            cover={<img alt="example" onClick={() => sendproductdetails(e)} className='w-56 h-56 relative' src={e?.srcOne} />}
+            cover={<img alt="example" onClick={() => sendproductdetails(e)} className='w-56 h-56 relative' src={e?.productImg[0]} />}
           >
             <Meta className='absolute top-48 w-auto left-0 p-2 bg-white' title={e?.productTitle} />
             <div className="flex justify-between mt-3">
