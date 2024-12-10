@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Drawer,Slider } from 'antd';
+import { Button, Drawer, Slider } from 'antd';
 import MainMenu from './MainMenu';
 
 
 
 const Filter = ({ onFilterChange }) => {
-   
+
+
     const [inputValue, setInputValue] = useState(1);
     const onChange = (newValue, value) => {
         console.log(newValue, value, "newValueslider")
@@ -25,8 +26,7 @@ const Filter = ({ onFilterChange }) => {
 
         <>
             <div className="lg:block hidden ">
-                
-                <MainMenu onFilterChange={onFilterChange}/>
+                <MainMenu onFilterChange={onFilterChange} />
                 <div className="mx-3 mt-2">
                     <p>Price range</p>
                     <Slider
@@ -43,8 +43,8 @@ const Filter = ({ onFilterChange }) => {
             <Button className="lg:hidden" onClick={showDrawer}>Filter</Button>
             <Drawer title="Basic Drawer" onClose={onClose} open={open}>
                 <div >
-                   
-                     <MainMenu onFilterChange={onFilterChange}/>
+
+                    <MainMenu onFilterChange={onFilterChange} />
                     <div className="mx-3">
                         <p>Price range</p>
                         <Slider

@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import productData from '../Data/Productsdata';
 import { Button, Card,Pagination,Rate } from 'antd';
 import {
   ShoppingCartOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
+import searchDataContext from '../Context/SearchDataContext';
+import FilterContext from '../Context/FilterContext';
 
 const { Meta } = Card;
 
-function Products({ filter, searchdata }) {
+  function Products() {
+  const searchdata =useContext(searchDataContext).data
+  const filter =useContext(FilterContext).data
+
   const [currentPage, setCurrentPage] = useState(1);
-  console.log(filter, "filter")
   const itemsPerPage = 4;
   var data = productData.Products;
   const navigate = useNavigate();
@@ -46,7 +50,6 @@ function Products({ filter, searchdata }) {
     <>
       <div class="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-4">
         {currentPageData?.map((e) => {
-          console.log(e,"eeeeeeeeeeeee")
           return <Card
             key={e.productId}
             hoverable

@@ -70,9 +70,9 @@ const MainMenu = ({ onFilterChange }) => {
                     mode="inline"
                     items={items}
                 />
-                
+
             </div>
-            
+
 
         </>
     );

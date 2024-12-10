@@ -8,22 +8,24 @@ import { useState } from 'react';
 import Login from './Pages/Login';
 import Shop from './Pages/Shop';
 import Magzine from './Pages/Magzine';
+import SearchDataState from './Context/SearchDataState';
+import FilterState from './Context/FilterState';
 
 
 function Routespages() {
-    const [handlesearchdata, sethandlesearchdata] = useState();
-
-  
+  const [handlesearchdata, sethandlesearchdata] = useState();
   const handlesearch = (searchdata) => {
     sethandlesearchdata(searchdata);
-    console.log("filter",searchdata)
-    console.log("Searchdata",handlesearchdata)
-};
+  };
+
+  
   return (
     <>
-       <Routes>
+      <SearchDataState searchdata={handlesearchdata}>
+        {/* <FilterState filterdata={handleFilterChange} > */}
+        <Routes>
           <Route path="/" element={<Wrapper onsearch={handlesearch} />}>
-            <Route index element={<Landingpage   searchdata={handlesearchdata} />}></Route>
+            <Route index element={<Landingpage searchdata={handlesearchdata} />}></Route>
             <Route path="/products" element={<Products searchdata={handlesearchdata} />}></Route>
             <Route path="/ProductDetails/:id" element={<ProductDetails />}></Route>
             <Route path="/login" element={<Login />}></Route>\
@@ -31,6 +33,10 @@ function Routespages() {
             <Route path="/magzine" element={<Magzine />}></Route>\
           </Route>
         </Routes>
+        {/* </FilterState > */}
+      </SearchDataState>
+
+
     </>
   )
 }
