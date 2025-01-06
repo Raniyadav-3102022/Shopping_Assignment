@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
+import FilterContext from '../Context/FilterContext';
 
 function getItem(label, key, icon, children, type, color) {
     return {
@@ -37,43 +38,27 @@ const items = [
         type: 'divider',
     },
 ];
-const MainMenu = ({ onFilterChange }) => {
-    const onClick = (e) => {
-        console.log('click ', e.domEvent.target.innerHTML);
-        onFilterChange(e.domEvent.target.innerHTML)
-    };
-    const [inputValue, setInputValue] = useState(1);
-    const onChange = (newValue, value) => {
-        console.log(newValue, value, "newValueslider")
-        onFilterChange(newValue)
-
-        setInputValue(newValue);
-    };
-    const formatter = (value) => `$${value}`;
-    const [open, setOpen] = useState(false);
-    const showDrawer = () => {
-        setOpen(true);
-    };
-    const onClose = () => {
-        setOpen(false);
+const MainMenu = () => {
+    const { filter, setFilter } = useContext(FilterContext);
+    const handleChange = (event) => {
+        setFilter(event.domEvent.target.innerHTML);
     };
     return (
 
         <>
             <div className="lg:block hidden ">
                 <Menu
-                    onClick={onClick}
-                    style={{
-                        width: 256,
-                    }}
+                    onClick={handleChange}
+                    value={filter}
+                    // onChange={handleChange}
+                    // style={{
+                    //     width: 256,
+                    // }}
                     defaultSelectedKeys={['1']}
                     mode="inline"
                     items={items}
                 />
-
             </div>
-
-
         </>
     );
 };

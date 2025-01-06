@@ -1,13 +1,14 @@
 
+import { useState } from "react";
 import FilterContext from "./FilterContext"
-const FilterState = (props) => {
-    const state = {
-        data: props.filtdata
-    }
+const FilterState = ({ children }) => {
+    const [filter, setFilter] = useState();
+  
     return (
-        <FilterContext.Provider value={state}>
-            {props.children}
-        </FilterContext.Provider>
-    )
-}
-export default FilterState;
+      <FilterContext.Provider value={{ filter, setFilter }}>
+        {children}
+      </FilterContext.Provider>
+    );
+  };
+  export default FilterState;
+  

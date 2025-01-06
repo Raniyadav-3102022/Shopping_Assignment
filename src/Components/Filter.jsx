@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Drawer, Slider } from 'antd';
 import MainMenu from './MainMenu';
+import FilterContext from '../Context/FilterContext';
+import sliderRangeContext from '../Context/sliderRangeContext';
 
 
 
 const Filter = ({ onFilterChange }) => {
-
+    const { filter } = useContext(FilterContext);
+    // const [Rangedata, setRangedata] = useContext(sliderRangeContext);
 
     const [inputValue, setInputValue] = useState(1);
-    const onChange = (newValue, value) => {
-        console.log(newValue, value, "newValueslider")
-        onFilterChange(newValue)
+    // const handleChange = (newValue, value) => {
+    //     console.log(newValue, value, "newValueslider")
 
-        setInputValue(newValue);
-    };
+    //     setRangedata(newValue);
+    // };
     const formatter = (value) => `$${value}`;
     const [open, setOpen] = useState(false);
     const showDrawer = () => {
@@ -23,10 +25,9 @@ const Filter = ({ onFilterChange }) => {
         setOpen(false);
     };
     return (
-
         <>
             <div className="lg:block hidden ">
-                <MainMenu onFilterChange={onFilterChange} />
+                <MainMenu />
                 <div className="mx-3 mt-2">
                     <p>Price range</p>
                     <Slider
@@ -35,8 +36,9 @@ const Filter = ({ onFilterChange }) => {
                         label="Price Range"
                         min={100}
                         max={1000}
-                        onChange={onChange}
-                        value={typeof inputValue === 'number' ? inputValue : 0}
+                        // value={typeof Rangedata === 'number' ? Rangedata : 0} onChange={handleChange}
+                    // onChange={onChange}
+                    // value={typeof inputValue === 'number' ? inputValue : 0}
                     />
                 </div>
             </div>
@@ -47,15 +49,18 @@ const Filter = ({ onFilterChange }) => {
                     <MainMenu onFilterChange={onFilterChange} />
                     <div className="mx-3">
                         <p>Price range</p>
-                        <Slider
+                        {/* <Slider
                             tooltip={{ formatter }}
                             className=' w-56 mt-4'
                             label="Price Range"
                             min={100}
                             max={1000}
-                            onChange={onChange}
-                            value={typeof inputValue === 'number' ? inputValue : 0}
-                        />
+                            // onChange={onChange}
+                            // value={typeof inputValue === 'number' ? inputValue : 0}
+                            value={typeof Rangedata === 'number' ? Rangedata : 0}
+                            onChange={handleChange}
+
+                        /> */}
                     </div>
                 </div>
             </Drawer>

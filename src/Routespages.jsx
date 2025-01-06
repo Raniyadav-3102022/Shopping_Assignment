@@ -9,7 +9,6 @@ import Login from './Pages/Login';
 import Shop from './Pages/Shop';
 import Magzine from './Pages/Magzine';
 import SearchDataState from './Context/SearchDataState';
-import FilterState from './Context/FilterState';
 
 
 function Routespages() {
@@ -22,7 +21,6 @@ function Routespages() {
   return (
     <>
       <SearchDataState searchdata={handlesearchdata}>
-        {/* <FilterState filterdata={handleFilterChange} > */}
         <Routes>
           <Route path="/" element={<Wrapper onsearch={handlesearch} />}>
             <Route index element={<Landingpage searchdata={handlesearchdata} />}></Route>
@@ -33,7 +31,6 @@ function Routespages() {
             <Route path="/magzine" element={<Magzine />}></Route>\
           </Route>
         </Routes>
-        {/* </FilterState > */}
       </SearchDataState>
 
 

@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import Navbar from './Navbar'
 import { Outlet } from 'react-router-dom'
+import FilterState from '../Context/FilterState'
+import SearchDataState from '../Context/SearchDataState'
 
-function Wrapper({onsearch}) {
-  const [enteredsearch, setenteredsearch] = useState(null);
+function Wrapper() {
 
-  const handlesearchFilterChange = (searchdata) => {
-    setenteredsearch(searchdata);
-    onsearch(searchdata)
-      console.log("sEARCH",searchdata)
-  };
+
   return (
     <div>
-      <Navbar handlesearchFilterChange={handlesearchFilterChange} />
-      <Outlet  Searchdata={enteredsearch}/>
+      <SearchDataState>
+        <FilterState >
+          <Navbar />
+          <Outlet />
+        </FilterState>
+      </SearchDataState>
     </div>
   )
 }

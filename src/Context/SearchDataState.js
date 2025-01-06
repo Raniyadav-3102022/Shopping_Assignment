@@ -1,12 +1,12 @@
+import { useState } from "react";
 import SearchDataContext from "./SearchDataContext";
 
-const SearchDataState = (props) => {
-    const state = {
-        data: props.searchdata
-    }
+const SearchDataState = ({ children }) => {
+       const [searchData, setsearchData] = useState();
+   
     return (
-        <SearchDataContext.Provider value={state}>
-            {props.children}
+        <SearchDataContext.Provider value={{ searchData, setsearchData }}>
+            {children}
         </SearchDataContext.Provider>
     )
 }
