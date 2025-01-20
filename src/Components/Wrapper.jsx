@@ -9,12 +9,10 @@ function Wrapper() {
 
   return (
     <div>
-      <SearchDataState>
         <FilterState >
           <Navbar />
           <Outlet />
         </FilterState>
-      </SearchDataState>
     </div>
   )
 }

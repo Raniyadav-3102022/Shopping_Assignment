@@ -33,7 +33,7 @@ const items = [
     },
     getItem('Categoery', 'sub3', <SettingOutlined />, [
         getItem('Home', '8'),
-        getItem('Garden', '9'),
+        getItem('Entrance', '9'),
     ]), {
         type: 'divider',
     },
@@ -50,10 +50,9 @@ const MainMenu = () => {
                 <Menu
                     onClick={handleChange}
                     value={filter}
-                    // onChange={handleChange}
-                    // style={{
-                    //     width: 256,
-                    // }}
+                    style={{
+                        width: 256,
+                    }}
                     defaultSelectedKeys={['1']}
                     mode="inline"
                     items={items}
