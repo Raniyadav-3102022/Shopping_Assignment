@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
-import FilterContext from '../Context/FilterContext';
+import CommonContext from '../Context/CommonContext';
+import productData from '../Data/Productsdata';
+
 
 function getItem(label, key, icon, children, type, color) {
     return {
@@ -13,35 +13,27 @@ function getItem(label, key, icon, children, type, color) {
         color
     };
 }
-const items = [
-    getItem('Collection', 'sub1', <MailOutlined />, [
-        getItem('Bed Room', '1'),
-        getItem('Garden', '2'),
-        getItem('Hall', '3'),
-    ]),
-    {
-        type: 'divider',
-    },
-    getItem('color', 'sub2', <AppstoreOutlined />, [
-        getItem('White', '4'),
-        getItem('Pink', '5'),
-        getItem('Grey', '6'),
-        getItem('Yellow', '7'),
-    ]),
-    {
-        type: 'divider',
-    },
-    getItem('Categoery', 'sub3', <SettingOutlined />, [
-        getItem('Home', '8'),
-        getItem('Entrance', '9'),
-    ]), {
-        type: 'divider',
-    },
-];
+
+const generateMenuItems = (arrays) => {
+    return arrays.map((array, index) => (
+        <Menu.SubMenu key={array.label} title={array.label}>
+            {array.items.map((item, i) => (
+                <Menu.Item key={`${index}-${i}`}>
+                    {item}
+                </Menu.Item>
+            ))}
+        </Menu.SubMenu>
+    ));
+};
+
+const items = generateMenuItems(productData.allVaribles);
+
 const MainMenu = () => {
-    const { filter, setFilter } = useContext(FilterContext);
+    const { setfiltervalue, setfilterType } = useContext(CommonContext);
+
     const handleChange = (event) => {
-        setFilter(event.domEvent.target.innerHTML);
+        setfiltervalue(event.domEvent.target.innerHTML)
+        setfilterType(event.keyPath[1])
     };
     return (
 
@@ -49,14 +41,9 @@ const MainMenu = () => {
             <div className="lg:block hidden ">
                 <Menu
                     onClick={handleChange}
-                    value={filter}
-                    style={{
-                        width: 256,
-                    }}
-                    defaultSelectedKeys={['1']}
-                    mode="inline"
-                    items={items}
-                />
+                    mode="inline">
+                    {items}
+                </Menu>
             </div>
         </>
     );

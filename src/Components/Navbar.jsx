@@ -4,14 +4,16 @@ import cart from '../assets/Icone/cart-shopping-solid.svg'
 import { Link } from 'react-router-dom'
 
 import { Badge } from 'antd';
-import SearchDataContext from '../Context/SearchDataContext';
+import CommonContext from '../Context/CommonContext';
 
 function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const { searchData, setsearchData  } = useContext(SearchDataContext);
+    const { setfiltervalue, setfilterType } = useContext(CommonContext);
+
     const handleSearch = (event) => {
-        setsearchData(event.target.value);
-        console.log(searchData,"from navbar");
+      
+        setfiltervalue(event.target.value)
+        setfilterType("searchValue")
     };
     return (
         <div>
@@ -51,7 +53,7 @@ function Navbar() {
                             </div>
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                            <Search type='search' value={searchData} className="lg:w-20" onChange={(e) => handleSearch(e)}></Search>
+                            <Search type='search'  className="lg:w-20" onChange={(e) => handleSearch(e)}></Search>
                             <button type="button" className="text-dark relative rounded-full  p-1 ms-2  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                 <span className="absolute -inset-1.5"></span>
                                 <span className="sr-only">View notifications</span>

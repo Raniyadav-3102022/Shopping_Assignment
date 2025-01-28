@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import SliderRangeState from "./Context/sliderRangeState";
 import { BrowserRouter } from "react-router-dom";
+import CommonState from './Context/CommonState';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <BrowserRouter>
-    <SliderRangeState>
-      <App />
-    </SliderRangeState>,
+      <CommonState>
+        <App />
+      </CommonState>,
   </BrowserRouter>
 );
 

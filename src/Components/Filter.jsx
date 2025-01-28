@@ -1,17 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { Button, Drawer, Slider } from 'antd';
 import MainMenu from './MainMenu';
-import sliderRangeContext from '../Context/sliderRangeContext';
+import CommonContext from '../Context/CommonContext';
 
 
 
 const Filter = () => {
 
-    const { Rangedata, setRangedata } = useContext(sliderRangeContext);
+   
+    const { setfiltervalue, setfilterType } = useContext(CommonContext);
 
     const handleChange = (value) => {
-        console.log(value, "newValueslider");
-        setRangedata(value);
+        setfiltervalue(value)
+        setfilterType("productPrice")
     };
     const formatter = (value) => `${value}`;
     const [open, setOpen] = useState(false);
@@ -31,18 +32,8 @@ const Filter = () => {
                         min={100}
                         max={1000}
                         onChange={handleChange}
-                        value={Rangedata}
                     />
 
-                    {/* <Slider
-                        range
-                        min={100}
-                        max={1000}
-                        value={Rangedata}
-                        onChange={handleChange}
-                    />
-                    <div>Selected Range:  {Rangedata}</div> */}
-                    {/* <div>Selected Range: {Rangedata[0]} - {Rangedata[1]}</div> */}
                 </div>
             </div>
             <Button className="lg:hidden" onClick={showDrawer}>Filter</Button>
@@ -52,14 +43,11 @@ const Filter = () => {
                     <MainMenu />
                     <div className="mx-3">
                         <p>Price range</p>
-                        {/* <Slider
-                        range
-                        min={100}
-                        max={1000}
-                        value={Rangedata}
-                        onChange={handleChange}
-                    />
-                    <div>Selected Range: {Rangedata[0]} - {Rangedata[1]}</div> */}
+                        <Slider
+                            min={100}
+                            max={1000}
+                            onChange={handleChange}
+                        />
 
                     </div>
                 </div>

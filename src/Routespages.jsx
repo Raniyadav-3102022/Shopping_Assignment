@@ -8,30 +8,23 @@ import { useState } from 'react';
 import Login from './Pages/Login';
 import Shop from './Pages/Shop';
 import Magzine from './Pages/Magzine';
-import SearchDataState from './Context/SearchDataState';
+import Buynow from './Pages/Buynow';
 
 
 function Routespages() {
-  const [handlesearchdata, sethandlesearchdata] = useState();
-  const handlesearch = (searchdata) => {
-    sethandlesearchdata(searchdata);
-  };
-
-  
   return (
     <>
-      <SearchDataState searchdata={handlesearchdata}>
-        <Routes>
-          <Route path="/" element={<Wrapper onsearch={handlesearch} />}>
-            <Route index element={<Landingpage searchdata={handlesearchdata} />}></Route>
-            <Route path="/products" element={<Products searchdata={handlesearchdata} />}></Route>
-            <Route path="/ProductDetails/:id" element={<ProductDetails />}></Route>
-            <Route path="/login" element={<Login />}></Route>\
-            <Route path="/shop" element={<Shop />}></Route>\
-            <Route path="/magzine" element={<Magzine />}></Route>\
-          </Route>
-        </Routes>
-      </SearchDataState>
+      <Routes>
+        <Route path="/" element={<Wrapper />}>
+          <Route index element={<Landingpage />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route path="/ProductDetails/:id" element={<ProductDetails />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/shop" element={<Shop />}></Route>
+          <Route path="/magzine" element={<Magzine />}></Route>
+          <Route path="/buynow" element={<Buynow />}></Route>
+        </Route>
+      </Routes>
 
 
     </>
