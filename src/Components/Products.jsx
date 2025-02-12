@@ -16,38 +16,16 @@ function Products() {
   const itemsPerPage = 4;
   var data = productData.Products;
 
-
-
-  const formatSearchString = (input) => {
-    if (!input) return "";
-    return input.charAt(0).toUpperCase() + input.substr(1).toLowerCase();
-  };
-  // if (filter || searchData || Rangedata) {    
-  //   const formattedSearchData = formatSearchString(searchData);
-  //   data = productData.Products && productData.Products?.filter(
-  //     item => item.productTitle === filter ||
-  //       item.productCategoery === filter ||
-  //       item.productColor === filter ||
-  //       item.productColor.includes(filter)  ||
-  //       item.productPrice === Rangedata ||
-  //       (item.productTitle.startsWith(searchData?.charAt(0).toUpperCase() + searchData?.substr(1).toLowerCase())) ||
-  //       (item.productCategoery).startsWith(searchData?.charAt(0).toUpperCase() + searchData?.substr(1).toLowerCase()) ||
-  //       (item.productColor).includes(searchData?.charAt(0).toUpperCase() + searchData?.substr(1).toLowerCase()) ||
-  //       (item.productPrice <= Number(Rangedata))
-  //   );
-  // }
-
-  // [item.productTitle,item.productCategoery,item.productColor].filter(i => console.log(i))
-
-
-
   if (filtervalue && filterType) {
     data = productData.Products && productData.Products?.filter(
       item => {
-        if (typeof (filtervalue) === "string") {
+        if (typeof (filtervalue) === "string" && filterType == "searchValue") {
           const prod = Object.values(item).flat().join(" ,").toLocaleLowerCase()
           return prod.includes(filtervalue.toLocaleLowerCase()) || prod.startsWith(filtervalue.toLocaleLowerCase());
-        } else if (typeof (filtervalue) === "number") {
+        } else if (typeof (filtervalue) === "string" && filterType != "searchValue") {
+          return item[filterType].includes(filtervalue)
+        }
+        else if (typeof (filtervalue) === "number") {
           return item.productPrice <= Number(filtervalue)
         }
       }

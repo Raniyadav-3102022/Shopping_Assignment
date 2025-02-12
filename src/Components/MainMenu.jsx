@@ -34,6 +34,7 @@ const MainMenu = () => {
     const handleChange = (event) => {
         setfiltervalue(event.domEvent.target.innerHTML)
         setfilterType(event.keyPath[1])
+        console.log(event.keyPath[1],"event.keyPath[1]")
     };
     return (
 
